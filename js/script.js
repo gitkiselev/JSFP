@@ -1,10 +1,7 @@
-
+	
 	let slideIndex = 1;
 	let slides = document.getElementsByClassName('main-slider-item');
-	for(let i = 0; i < slides.length; i++){
-	      
-	      
-	    }
+	
 	setInterval(function(){
 		plusSlides(1);
 	}, 3000);
@@ -35,25 +32,51 @@
 
 
 	//popup design
-	let btnsDesign     = document.getElementsByClassName('button-design');
-	let btnsPopupClose = document.querySelectorAll('.popup-close');//X
-	let popupsDialog   = document.querySelectorAll('.popup-dialog');//modal
+	let btnsDesign         = document.getElementsByClassName('button-design');
+	let btnsPopupClose     = document.querySelectorAll('.popup-close');//X
+	let popupsDialog       = document.querySelectorAll('.popup-dialog');//modal
 	let popupDesignOverlay = document.querySelector('.popup-design');//overlay
-
+	let popupContentDF     = document.querySelectorAll('.popup-content');//content has to changed by text
+	let formDF             = document.getElementById('myform');
+	let contentDF          = document.getElementById('contentDF');
+	let designForm         = document.getElementsByName('design-form')[0];
+    let nameDF             = designForm.querySelector('#nameDF');
+    let commentDF          = designForm.querySelector('#commentDF');
+    let phoneDF            = designForm.querySelector('.phoneDF');
+    let emailDF            = designForm.querySelector('#emailDF');
+    let popupOk            = document.querySelector('.popup-ok'); 
+    let popupError         = document.querySelector('.popup-error');
 	//closing popup by clicking on overlay
 	popupDesignOverlay.addEventListener('click', hidePopupModal);
+	popupOk.addEventListener('click', hidePopupModalSuccess);
+	popupError.addEventListener('click', hidePopupModalError);
+	//Функции закрытия модальных окон
 	function hidePopupModal(e){
-		console.log(1);
+		console.log('modal design closed');
 		if(e.target.classList.contains('popup-close') || e.target.classList.contains('popup-design')){
 			popupDesignOverlay.style.display = 'none';
 			document.body.style.overflow = '';
 		}			
 	}
-
+	function hidePopupModalSuccess(e){
+		console.log('modal success closed');
+		if(e.target.classList.contains('popup-close') || e.target.classList.contains('popup-ok')){
+			popupOk.style.display = 'none';
+			document.body.style.overflow = '';
+		}	
+	}
+	function hidePopupModalError(e){
+		console.log('modal error closed');
+		if(e.target.classList.contains('popup-close') || e.target.classList.contains('popup-error')){
+			popupError.style.display = 'none';
+			document.body.style.overflow = '';
+		}	
+	}
 	//closing by clicking on the button "X"
 	for(let i = 0; i < btnsPopupClose.length; i++){
 		let btnPopupClose = btnsPopupClose[i];
 		btnPopupClose.addEventListener('click', hidePopupModal);
+		
 	}
 	function showPopupDesign(){
 		let popupsDialog = document.querySelectorAll('.popup-dialog');
@@ -63,12 +86,13 @@
 		}
 		let popupDesignModal = document.querySelector('.popup-design');
 		popupDesignModal.style.display = 'block';
-		popupDesignModal.style.zIndex = '1000000000';
+		//popupDesignModal.style.zIndex = '1000000000';
 		document.body.style.overflow = 'hidden';
 	}
 	for(let i = 0; i < btnsDesign.length; i++){
 		let btnDesign = btnsDesign[i];
 		btnDesign.addEventListener('click', showPopupDesign);
+		
 	}
 
 
@@ -92,7 +116,7 @@
 	}
 	function showPopupConsultation(){
 			popupConsultation.style.display = 'block';
-			popupConsultation.style.zIndex = '1000000000';
+			//popupConsultation.style.zIndex = '1000000000';
 			document.body.style.overflow = 'hidden';	
 	}
 	for(let i = 0; i < btnsConsultation.length; i++){
@@ -100,13 +124,8 @@
 		btnConsultation.addEventListener('click', showPopupConsultation);
 	}
 	 //forms validation and sending in modal
-	    let designForm = document.getElementsByName('design-form')[0];
-	    let nameDF     = designForm.querySelector('#nameDF');
-	    let commentDF  = designForm.querySelector('#commentDF');
-	    let phoneDF    = designForm.querySelector('.phoneDF');
-	    let emailDF    = designForm.querySelector('#emailDF');
-	    //let value_name_DF = nameDF.value;
-	    //let value_comment_DF = commentDF.value;
+	    
+	    
 	    
 	    function allowRusWords(){
 	    	console.log('typing name');
@@ -134,12 +153,7 @@
 
 	    	}
 	    }
-	    /*function allowPhone(){
-	    	console.log('typing phone');
-	    	let regexp = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d{2}\- ]{7,10}$/;
-	    	this.value = this.value.replace(regexp, '');
-	    	
-	    }*/
+	    
 	    function setCursorPosition(pos, elem) {
 		    elem.focus();
 		    if (elem.setSelectionRange) elem.setSelectionRange(pos, pos);
@@ -172,91 +186,54 @@
 	    nameDF.addEventListener('input', allowRusWords);
 	    commentDF.addEventListener('input', allowRusSentences);
 	    emailDF.addEventListener('blur', allowEmail);
-	    //ajax
 	    
-     
 
 
-let message = new Object();
-message.loading = "Загрузка...";
-message.success = "Спасибо! Скоро мы с вами свяжемся";
-message.failure = "что пошло не так";
 
-let form = document.getElementsByClassName("main-form")[0];
-let input = form.getElementsByTagName("input");
-let statusMessage = document.createElement("div");
-statusMessage.classList.add("status");
-
-form.addEventListener("submit", function(e) {
-  event.preventDefault();
-  form.appendChild(statusMessage);
-
-  //AJAX
-  let request = new XMLHttpRequest();
-  request.open("POST", "server.php");
-  request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-  let formData = new FormData(form);
-
-  request.send(formData);
-
-  request.onreadystatechange = function() {
-    if (request.readyState < 4) {
-      statusMessage.innerHTML = message.loading;
-    } else if (request.readyState === 4) {
-      if (request.status === 200 && request.status < 300) {
-        statusMessage.innerHTML = message.success;
-        //можно  добавлять контент
-      } else {
-        statusMessage.innerHTML = message.failure;
-      }
-    }
-  };
-
-  for (let i = 0; i < input.length; i++) {
-    input[i].value = ""; // ощищаем поля ввода
-  }
-});
-
-//Скрипт к контактной форме
-let message1 = new Object();
-message1.loading = "Загрузка...";
-message1.success = "Спасибо! Скоро мы с вами свяжемся";
-message1.failure = "Недостаточно данных";
+		//Скрипт к форме дизайн портрета
+		let message = new Object();
+		message.loading = "Загрузка...";
+		message.success = "Спасибо! Скоро мы с вами свяжемся";
+		message.failure = "Недостаточно данных";
 
 
-let formDFInput = designForm.querySelectorAll("input, textarea");
-let statusMessageDF = document.createElement("div");
-statusMessageDF.classList.add("status");
-let formDataDF = new FormData(designForm);
+		let formDFInput = designForm.querySelectorAll("input, textarea");
+		let statusMessageDF = document.createElement("div");
+		statusMessageDF.classList.add("status");
+		let formDataDF = new FormData(designForm);
 
-designForm.addEventListener("submit", function(e) {
-  event.preventDefault();
-  designForm.appendChild(statusMessageDF);
-  //AJAX for contact form
-  let request1 = new XMLHttpRequest();
-  request1.open("POST", "server.php");
-  request1.setRequestHeader(
-    "Content-Type",
-    "application/x-www-form-urlencoded"
-  );
-  request1.send(formDataCF);
+		designForm.addEventListener("submit", function(e) {
+		  event.preventDefault();
+		  designForm.appendChild(statusMessageDF);
+		  //AJAX for contact form
+		  let request = new XMLHttpRequest();
+		  request.open("POST", "server.php");
+		  request.setRequestHeader(
+		    "Content-Type",
+		    "application/x-www-form-urlencoded"
+		  );
+		  request.send(formDataDF);
+		  
+		  request.onreadystatechange = function() {
+		    if (request.status === 200 && request.status < 300) {
+		      	
+		        //statusMessage.innerHTML = message.success;
+		        //можно  добавлять контент
+		        popupDesignOverlay.style.display = 'none';
+		        popupOk.style.display = 'block';
+		      } else {
+		        //contentDF.innerHTML = message.failure;
+		      }
+		  };
+		  for (let i = 0; i < formDFInput.length; i++) {
+		    formDFInput[i].value = ""; // ощищаем поля ввода
+		  }
+		});
 
-  request1.onreadystatechange = function() {
-    if (request1.readyState < 4) {
-      statusMessageCF.innerHTML = message1.loading;
-    } else if (request1.readyState === 4) {
-      if (request1.status === 200 && request1.status < 300) {
-        statusMessageCF.innerHTML = message1.success;
-      } else {
-        statusMessageCF.innerHTML = message1.failure;
-      }
-    }
-  };
-  for (let i = 0; i < formDFInput.length; i++) {
-    formDFInput[i].value = ""; // ощищаем поля ввода
-  }
-});
+			
 
+
+	
 
 
 	    	
