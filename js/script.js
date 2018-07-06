@@ -363,7 +363,7 @@ function isPromo(){
 	 }
 }
  	function calcSum(){
- 		if(promocode.value == 'q'){
+ 		if(promocode.value == 'IWANTPOPART'){
  			result = (+size.options[size.selectedIndex].value + +material.options[material.selectedIndex].value + +variants.options[variants.selectedIndex].value) * 0.7;
  		}
  		else {
