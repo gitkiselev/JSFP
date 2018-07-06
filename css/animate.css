@@ -3559,3 +3559,36 @@
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 }
+
+/*bottom slider*/
+@keyframes slideInLeftOutRight {
+  0% {
+    transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+    visibility: visible;
+  }
+
+  30% {
+    transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
+  }
+  70% {
+    transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
+  }
+  100% {
+    transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+.slideInLeftOutRight {
+  -webkit-animation-name: slideInLeftOutRight;
+  animation-name: slideInLeftOutRight;
+}
+.slideInLeftOutRight {
+  animation-name: slideInLeftOutRightn;
+  animation-name: slideInLeftOutRight;
+}

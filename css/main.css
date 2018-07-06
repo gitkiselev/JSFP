@@ -1776,3 +1776,14 @@ h4 {
   /* Making it beautiful */
 
 }
+.feedback-slider-item {
+  position: relative;
+  display: block;
+  clear: both;
+}
+.feedback-block .button-design {
+  z-index: 10;
+}
+.fixed-gift {
+  z-index: 5;
+}
