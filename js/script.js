@@ -373,6 +373,76 @@ function isPromo(){
  	}
   
   
+  //Фильтрация блоков
+  let portfolioMenu = document.querySelector('.portfolio-menu');
+  let portfolioBlock = document.querySelectorAll('.portfolio-block');
+  let portfolioWrapper = document.querySelector('.portfolio-wrapper');
+  portfolioMenu.addEventListener('click', (e) => {
+  	if(e.target.classList.contains('all')){
+  		for(let i = 0; i < portfolioBlock.length; i++){
+	  			portfolioBlock[i].style.display = 'none';
+	  		if(portfolioBlock[i].classList.contains('all')){
+	  			portfolioBlock[i].style.display = 'block';
+	  		}
+	  	}
+    }
+  	if(e.target.classList.contains('lovers')){
+  		for(let i = 0; i < portfolioBlock.length; i++){
+	  			portfolioBlock[i].style.display = 'none';
+	  		if(portfolioBlock[i].classList.contains('lovers')){
+	  			portfolioBlock[i].style.display = 'block';
+	  		}
+	  	}
+    }
+    if(e.target.classList.contains('chef')){
+  		for(let i = 0; i < portfolioBlock.length; i++){
+	  			portfolioBlock[i].style.display = 'none';
+	  		if(portfolioBlock[i].classList.contains('chef')){
+	  			portfolioBlock[i].style.display = 'block';
+	  		}
+	  	}
+    }
+    if(e.target.classList.contains('girl')){
+  		for(let i = 0; i < portfolioBlock.length; i++){
+	  			portfolioBlock[i].style.display = 'none';
+	  		if(portfolioBlock[i].classList.contains('girl')){
+	  			portfolioBlock[i].style.display = 'block';
+	  		}
+	  	}
+    }
+    if(e.target.classList.contains('guy')){
+  		for(let i = 0; i < portfolioBlock.length; i++){
+	  			portfolioBlock[i].style.display = 'none';
+	  		if(portfolioBlock[i].classList.contains('guy')){
+	  			portfolioBlock[i].style.display = 'block';
+	  		}
+	  	}
+    }
+    if(e.target.classList.contains('lovers')){
+  		for(let i = 0; i < portfolioBlock.length; i++){
+	  			portfolioBlock[i].style.display = 'none';
+	  		if(portfolioBlock[i].classList.contains('lovers')){
+	  			portfolioBlock[i].style.display = 'block';
+	  		}
+	  	}
+    }
+    if(e.target.classList.contains('lovers')){
+  		for(let i = 0; i < portfolioBlock.length; i++){
+	  			portfolioBlock[i].style.display = 'none';
+	  		if(portfolioBlock[i].classList.contains('lovers')){
+	  			portfolioBlock[i].style.display = 'block';
+	  		}
+	  	}
+    }
+    if(e.target.classList.contains('grandmother') || e.target.classList.contains('granddad')){
+    	let noWorks = document.querySelector('.portfolio-no');
+  		for(let i = 0; i < portfolioBlock.length; i++){
+	  			portfolioBlock[i].style.display = 'none';
+	  			noWorks.style.display = 'block';
+	  		
+	  	}
+    }
+  });//Фильтрация блоков конец
   
 		
 
