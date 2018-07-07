@@ -374,85 +374,26 @@ function isPromo(){
   
   
   //Фильтрация блоков
-  let portfolioMenu = document.querySelector('.portfolio-menu');
-  let portfolioBlock = document.querySelectorAll('.portfolio-block');
-  let portfolioWrapper = document.querySelector('.portfolio-wrapper');
-  let noWorks = document.querySelector('.portfolio-no');
+  let portfolioMenu = document.querySelector('.portfolio-menu');//заголовки
+  let portfolioBlock = document.querySelectorAll('.portfolio-block');//пункты списка портфолио
+  let noWorks = document.querySelector('.portfolio-no');//нет работ пока
   
- portfolioMenu.addEventListener('click', function(e){
- 	let targetClass = e.target.getAttribute('class');
- 	if(e.target.classList.contains(targetClass)){
- 		console.log(targetClass);
-  		for(let i = 0; i < portfolioBlock.length; i++){
-	  			portfolioBlock[i].style.display = 'none';
-	  		if(portfolioBlock[i].classList.contains(targetClass)){
-	  			portfolioBlock[i].style.display = 'block';
-	  		}
-	  	}if (e.target.classList.contains('grandmother') || e.target.classList.contains('granddad')){
-	  			console.log('no works block');
-				noWorks.style.display = 'block';
-	  	}
-    }
- });
-  /*portfolioMenu.addEventListener('click', (e) => {
-  	if(e.target.classList.contains('all')){
-  		for(let i = 0; i < portfolioBlock.length; i++){
-	  			portfolioBlock[i].style.display = 'none';
-	  		if(portfolioBlock[i].classList.contains('all')){
-	  			portfolioBlock[i].style.display = 'block';
-	  		}
-	  	}
-    }
-  	if(e.target.classList.contains('lovers')){
-  		for(let i = 0; i < portfolioBlock.length; i++){
-	  			portfolioBlock[i].style.display = 'none';
-	  		if(portfolioBlock[i].classList.contains('lovers')){
-	  			portfolioBlock[i].style.display = 'block';
-	  		}
-	  	}
-    }
-    if(e.target.classList.contains('chef')){
-  		for(let i = 0; i < portfolioBlock.length; i++){
-	  			portfolioBlock[i].style.display = 'none';
-	  		if(portfolioBlock[i].classList.contains('chef')){
-	  			portfolioBlock[i].style.display = 'block';
-	  		}
-	  	}
-    }
-    if(e.target.classList.contains('girl')){
-  		for(let i = 0; i < portfolioBlock.length; i++){
-	  			portfolioBlock[i].style.display = 'none';
-	  		if(portfolioBlock[i].classList.contains('girl')){
-	  			portfolioBlock[i].style.display = 'block';
-	  		}
-	  	}
-    }
-    if(e.target.classList.contains('guy')){
-  		for(let i = 0; i < portfolioBlock.length; i++){
-	  			portfolioBlock[i].style.display = 'none';
-	  		if(portfolioBlock[i].classList.contains('guy')){
-	  			portfolioBlock[i].style.display = 'block';
-	  		}
-	  	}
-    }
-    if(e.target.classList.contains('lovers')){
-  		for(let i = 0; i < portfolioBlock.length; i++){
-	  			portfolioBlock[i].style.display = 'none';
-	  		if(portfolioBlock[i].classList.contains('lovers')){
-	  			portfolioBlock[i].style.display = 'block';
-	  		}
-	  	}
-    }
-    
-    if(e.target.classList.contains('grandmother') || e.target.classList.contains('granddad')){
-    	let noWorks = document.querySelector('.portfolio-no');
-  		for(let i = 0; i < portfolioBlock.length; i++){
-	  			portfolioBlock[i].style.display = 'none';
-	  			noWorks.style.display = 'block';
-	  		
-	  	}
-    }
-  });//Фильтрация блоков конец*/
+	 portfolioMenu.addEventListener('click', function(e){
+	 	let targetClass = e.target.getAttribute('class');
+	 	if(e.target.classList.contains(targetClass)){
+	 		console.log(targetClass);
+	  		for(let i = 0; i < portfolioBlock.length; i++){
+		  			portfolioBlock[i].style.display = 'none';
+		  		if(portfolioBlock[i].classList.contains(targetClass)){
+		  			portfolioBlock[i].style.display = 'block';
+		  		}
+		  	}if (e.target.classList.contains('grandmother') || e.target.classList.contains('granddad')){
+		  			console.log('no works block');
+					noWorks.style.display = 'block';
+		  	}
+	    }
+	 });
+	 //Фильтрация блоков конец 
 
 
 
@@ -565,13 +506,3 @@ function isPromo(){
   
   	
   //accordion
-  
-		
-
-	
-
-
-	    	
-
-	    
-	
