@@ -377,7 +377,24 @@ function isPromo(){
   let portfolioMenu = document.querySelector('.portfolio-menu');
   let portfolioBlock = document.querySelectorAll('.portfolio-block');
   let portfolioWrapper = document.querySelector('.portfolio-wrapper');
-  portfolioMenu.addEventListener('click', (e) => {
+  let noWorks = document.querySelector('.portfolio-no');
+  
+ portfolioMenu.addEventListener('click', function(e){
+ 	let targetClass = e.target.getAttribute('class');
+ 	if(e.target.classList.contains(targetClass)){
+ 		console.log(targetClass);
+  		for(let i = 0; i < portfolioBlock.length; i++){
+	  			portfolioBlock[i].style.display = 'none';
+	  		if(portfolioBlock[i].classList.contains(targetClass)){
+	  			portfolioBlock[i].style.display = 'block';
+	  		}
+	  	}if (e.target.classList.contains('grandmother') || e.target.classList.contains('granddad')){
+	  			console.log('no works block');
+				noWorks.style.display = 'block';
+	  	}
+    }
+ });
+  /*portfolioMenu.addEventListener('click', (e) => {
   	if(e.target.classList.contains('all')){
   		for(let i = 0; i < portfolioBlock.length; i++){
 	  			portfolioBlock[i].style.display = 'none';
@@ -426,14 +443,7 @@ function isPromo(){
 	  		}
 	  	}
     }
-    if(e.target.classList.contains('lovers')){
-  		for(let i = 0; i < portfolioBlock.length; i++){
-	  			portfolioBlock[i].style.display = 'none';
-	  		if(portfolioBlock[i].classList.contains('lovers')){
-	  			portfolioBlock[i].style.display = 'block';
-	  		}
-	  	}
-    }
+    
     if(e.target.classList.contains('grandmother') || e.target.classList.contains('granddad')){
     	let noWorks = document.querySelector('.portfolio-no');
   		for(let i = 0; i < portfolioBlock.length; i++){
@@ -442,7 +452,7 @@ function isPromo(){
 	  		
 	  	}
     }
-  });//Фильтрация блоков конец
+  });//Фильтрация блоков конец*/
 
 
 
@@ -464,19 +474,11 @@ function isPromo(){
   	
   
   function showImages(e){
-
-  	
-  		
-	  	if(e.target.tagName == 'IMG'){
-	  		e.target.style.position = 'relative';
-	    	e.target.style.zIndex = '10';
-	    	e.target.src = e.target.src.replace('.png', '-1.png');
-	  	}
-	    
-  	
- 
-  	
-
+  	if(e.target.tagName == 'IMG'){
+  		e.target.style.position = 'relative';
+    	e.target.style.zIndex = '10';
+    	e.target.src = e.target.src.replace('.png', '-1.png');
+  	}
   }
 
   function hideImages(e){
@@ -533,7 +535,36 @@ function isPromo(){
     plusSlides1(1);
   });
   //слайдер конец
+
+  //accordion
+  let accordion  = document.getElementById('accordion');//обертка
+  let accBlocks  = document.querySelectorAll('.accordion-block');//контент аккордиона
+  let accHeads   = document.querySelectorAll('.accordion-heading');//заголовок
   
+
+  for(let i = 0; i < accHeads.length; i++){
+  	let accHead = accHeads[i];
+  	accHead.addEventListener('click', toggleBlocks);
+  }
+  for(let i = 0; i < accBlocks.length; i++){
+  	let accBlock = accBlocks[i];
+  	accBlock.style.display = 'none';
+  }
+  function toggleBlocks(e){
+  	this.classList.toggle('activePanel');
+  	if(this.classList.contains('accordion-heading')){
+  		let panel = this.nextElementSibling;
+  		if(panel.style.display == 'block'){
+  			panel.style.display = 'none';
+  		}else {
+  			panel.style.display = 'block';
+  		}
+  		
+  	}
+  }
+  
+  	
+  //accordion
   
 		
 
