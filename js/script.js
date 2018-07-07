@@ -377,21 +377,37 @@ function isPromo(){
   let portfolioMenu = document.querySelector('.portfolio-menu');//заголовки
   let portfolioBlock = document.querySelectorAll('.portfolio-block');//пункты списка портфолио
   let noWorks = document.querySelector('.portfolio-no');//нет работ пока
+  //let pW = document.querySelector('.portfolio-wrapper');
+
+  
   
 	 portfolioMenu.addEventListener('click', function(e){
 	 	let targetClass = e.target.getAttribute('class');
-	 	if(e.target.classList.contains(targetClass)){
-	 		console.log(targetClass);
-	  		for(let i = 0; i < portfolioBlock.length; i++){
-		  			portfolioBlock[i].style.display = 'none';
+	 	if(e.target.classList.contains('active')){
+	 		return;//ничего не делаем, если пункт меню активен
+	 	}else {
+	 		//console.log(targetClass);
+	 		for(let i = 0; i < portfolioMenu.children.length; i++){
+	 			portfolioMenu.children[i].classList.remove('active');
+	 			
+	 		}//проходимся по всем заголовкам и удаляем обводку
+	 		for(let i = 0; i < portfolioBlock.length; i++){
+	 			console.log(targetClass);
+		  		portfolioBlock[i].style.display = 'none';//прячем все блоки
+		  		
 		  		if(portfolioBlock[i].classList.contains(targetClass)){
 		  			portfolioBlock[i].style.display = 'block';
-		  		}
-		  	}if (e.target.classList.contains('grandmother') || e.target.classList.contains('granddad')){
-		  			console.log('no works block');
-					noWorks.style.display = 'block';
-		  	}
-	    }
+
+		  		}//отображаем необходимый блок
+	   		} 
+	 		e.target.classList.add('active');//добавляем обводку заголовкам
+	 		if (e.target.classList.contains('grandmother') || e.target.classList.contains('granddad')){
+  			
+			noWorks.style.display = 'block';
+	  	}
+	 	}
+	   
+		  	
 	 });
 	 //Фильтрация блоков конец 
 
